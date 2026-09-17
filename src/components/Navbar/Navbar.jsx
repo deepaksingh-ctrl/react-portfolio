@@ -53,7 +53,7 @@ function Navbar(){
 
         <div className="request-btn">
             <a href="#">
-                Request A Quote!
+                Get A Quote!
             </a>
         </div>
 
