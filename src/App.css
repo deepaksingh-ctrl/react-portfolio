@@ -1,0 +1,42 @@
+img{
+    max-width: 100%;
+}
+
+.header-navbar .header-inner{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;  
+}
+
+nav ul li {
+    margin: 10px 5px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    padding: 10px 15px;
+    
+}
+
+.socialmedia-icons ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.socialmedia-icons ul li{
+    margin: 10px 5px;
+}
+.request-btn a{
+    background: #f00;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+}

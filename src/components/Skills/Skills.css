@@ -1,0 +1,31 @@
+.skills-main-sec{
+    margin: 10px 0;
+    background-color: #01183a;
+    padding: 40px 150px 60px 150px;
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+.progress-fill{
+    background: rgb(7, 168, 61);
+}
+
+.skills-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.skills-bar{
+    margin-bottom:30px;
+}
+
+.progress{
+    height:10px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.lightbox-content img{
+    width: 800px;
+}

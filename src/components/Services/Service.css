@@ -1,0 +1,17 @@
+
+.services-sec{
+    margin-bottom: 80px;
+}
+.services-sec h2{
+    margin-bottom: 40px;
+    font-size: 3rem;
+}
+.service-box{
+    background: #e7e6e6;
+    padding: 20px;
+    border:1px solid #ccc;
+    text-align: center;
+}
+.service-box h3{
+    margin:20px 0;
+}
