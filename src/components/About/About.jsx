@@ -35,7 +35,7 @@ function About(){
                     </div>
                     <div className='col-lg-6'>
                         <div className='about-content'>
-                        <h2>About Me</h2>
+                        <h2>About My Portfolio</h2>
             <h3>React & WordPress Developer</h3>
             <p className='mb-0'>
                 I'm a frontend developer passionate about building modern web
