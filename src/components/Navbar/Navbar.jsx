@@ -30,7 +30,7 @@ function Navbar(){
 <div className="header-navbar">
     <div className="container">
         <div className="header-inner">
-<div className="logo">
+<div className="logo logodesigngit">
             <img src={Logo} alt=""/>
         </div>
         
