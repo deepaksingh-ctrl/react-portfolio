@@ -24,7 +24,7 @@ function HeroSlider(){
 {  
     slides.map((slide) => (
         <SwiperSlide key={slide.id}>
-            <div className="hero-slide" style={
+            <div className="hero-slide hero-slidehomepage" style={
                 {
                 backgroundImage: `url(${slide.background})`,
                 }  
