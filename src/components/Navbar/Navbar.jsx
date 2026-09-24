@@ -1,87 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from '../../../src/assets/logo.png';
+import './Navbar.css';
 
+function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const toggleMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
-function Navbar(){
-       const navigation = [
-                { name: "Home", path: "/"},
-                { name: "About", path: "/about"},
-                { name: "Skills", path: "/skills"},
-                { name: "Projects", path: "/projects"},
-                { name: "Contact", path: "/contact"},
-                
-                ];
+  const closeMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
-                const socialMedia = [
+  const navigation = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Skills", path: "/skills" },
+    { name: "Projects", path: "/projects" },
+    { name: "Contact", path: "/contact" },
+  ];
 
-                    {name: 'FB', path: "/"},
-                    {name: 'TW', path: "/"},
-                    {name: 'IN', path: "/"},
-                    {name: 'LN', path: "/"}
-                ]
-;
+  const socialMedia = [
+    { name: 'FB', path: "/" },
+    { name: 'TW', path: "/" },
+    { name: 'IN', path: "/" },
+    { name: 'LN', path: "/" }
+  ];
 
+  return (
+    <>
+      <header className="header-navbar">
+        <div className="container">
+          <div className="header-inner">
+            <div className="logo logodesigngit">
+              <Link to="/" onClick={closeMenu}>
+                <img src={Logo} alt="Logo" />
+              </Link>
+            </div>
 
-    return(
-        <>
+            {/* Mobile Hamburger Toggle Button */}
+            <button
+              className={`menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+              onClick={toggleMenu}
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+            </button>
 
-<div className="header-navbar">
-    <div className="container">
-        <div className="header-inner">
-<div className="logo logodesigngit">
-            <img src={Logo} alt=""/>
-        </div>
-        
-        <nav>
-            <ul>
-
-             {navigation.map(item =>(
-                <li key={item.name}>
-                    <Link to={item.path}>{item.name}</Link>
+            {/* Navigation & Actions Container */}
+            <div className={`nav-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+              <nav>
+                <ul>
+                  {navigation.map((item) => (
+                    <li key={item.name}>
+                      <Link to={item.path} onClick={closeMenu}>
+                        {item.name}
+                      </Link>
                     </li>
+                  ))}
+                </ul>
+              </nav>
 
-             ))}
-                {/* <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Skills</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Contact</a></li> */}
-            </ul>
-        </nav>
+              <div className="request-btn">
+                <a href="#quote" onClick={closeMenu}>
+                  Get A Quote!
+                </a>
+              </div>
 
-        <div className="request-btn">
-            <a href="#">
-                Get A Quote!
-            </a>
+              <div className="socialmedia-icons">
+                <ul>
+                  {socialMedia.map((item) => (
+                    <li key={item.name}>
+                      <Link to={item.path} onClick={closeMenu}>
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+      </header>
 
-        <div className="socialmedia-icons">
-            <ul>
-                    {socialMedia.map(item =>(
-                        <li key={item.name}>
-                            <Link to={item.path}>{item.name}</Link>
-                        </li>
-
-                    ))}
-
-                {/* <li><a href="#">FB</a> </li>
-                <li><a href="#">IN</a> </li>
-                <li><a href="#">X</a> </li>
-                <li><a href="#">YT</a> </li>
-                <li><a href="#">LN</a> </li> */}
-            </ul>
-        </div>
-    </div>
-        </div>
- 
-
-</div>
-
-       
-        </>
-    )
+      {/* Backdrop overlay for mobile */}
+      <div
+        className={`mobile-backdrop ${isMobileMenuOpen ? 'open' : ''}`}
+        onClick={closeMenu}
+      />
+    </>
+  );
 }
 
 export default Navbar;
