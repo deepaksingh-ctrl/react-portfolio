@@ -1,238 +1,401 @@
 /* ======================================================
-   Navbar Main Styling
+   Modern Portfolio Header & Navbar Styles
    ====================================================== */
+
+:root {
+  --nav-primary: #e63946;
+  --nav-primary-gradient: linear-gradient(135deg, #ff3366 0%, #e60023 100%);
+  --nav-text: #1f2937;
+  --nav-text-muted: #6b7280;
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-border: rgba(0, 0, 0, 0.06);
+  --nav-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --nav-shadow-scrolled: 0 8px 30px -4px rgba(0, 0, 0, 0.1);
+  --nav-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Header Container */
 .header-navbar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  padding: 12px 0;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  padding: 16px 0;
+  transition: var(--nav-transition);
+}
+
+.header-navbar.scrolled {
+  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: var(--nav-shadow-scrolled);
 }
 
 .header-navbar .header-inner {
   display: flex;
-  width: 100%;
+  align-items: center;
   justify-content: space-between;
+  width: 100%;
+}
+
+/* ======================================================
+   Brand Logo
+   ====================================================== */
+.logo {
+  display: flex;
   align-items: center;
 }
 
-.logo img {
-  max-height: 45px;
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+
+.logo-link:hover {
+  transform: scale(1.03);
+}
+
+.logo-img {
+  max-height: 44px;
   width: auto;
-  display: block;
+  object-fit: contain;
+  transition: max-height 0.3s ease;
 }
 
-/* Nav Menu Desktop */
-.nav-menu {
+.header-navbar.scrolled .logo-img {
+  max-height: 38px;
+}
+
+/* ======================================================
+   Desktop Navigation Links
+   ====================================================== */
+.desktop-nav {
   display: flex;
   align-items: center;
-  gap: 20px;
 }
 
-nav ul {
+.nav-list {
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   align-items: center;
-}
-
-nav ul li {
-  margin: 0 4px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  padding: 8px 14px;
-  color: #333333;
-  font-weight: 500;
-  font-size: 16px;
-  border-radius: 4px;
-  transition: color 0.25s ease, background-color 0.25s ease;
-  display: block;
-}
-
-nav ul li a:hover {
-  color: #f00;
-  background-color: rgba(255, 0, 0, 0.05);
-}
-
-/* Request Button */
-.request-btn a {
-  background: #f00;
-  padding: 10px 20px;
-  border-radius: 6px;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  display: inline-block;
-  transition: background 0.25s ease, transform 0.2s ease;
-}
-
-.request-btn a:hover {
-  background: #d60000;
-  transform: translateY(-2px);
-  color: #ffffff;
-}
-
-/* Social Media Icons */
-.socialmedia-icons ul {
   list-style: none;
-  display: flex;
   margin: 0;
   padding: 0;
   gap: 8px;
 }
 
-.socialmedia-icons ul li a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #f1f3f5;
-  color: #495057;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s ease;
+.nav-item {
+  position: relative;
 }
 
-.socialmedia-icons ul li a:hover {
-  background: #f00;
-  color: #ffffff;
-  transform: translateY(-2px);
+.nav-link-item {
+  position: relative;
+  display: inline-block;
+  padding: 8px 16px;
+  color: var(--nav-text);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.2px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: var(--nav-transition);
+}
+
+/* Sliding underline indicator */
+.nav-link-item::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: var(--nav-primary-gradient);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link-item:hover {
+  color: var(--nav-primary);
+  background-color: rgba(230, 57, 70, 0.05);
+}
+
+.nav-link-item:hover::after {
+  transform: scaleX(1);
+}
+
+/* Active Link State */
+.nav-link-item.active {
+  color: var(--nav-primary);
+  font-weight: 600;
+  background-color: rgba(230, 57, 70, 0.08);
+}
+
+.nav-link-item.active::after {
+  transform: scaleX(1);
 }
 
 /* ======================================================
-   Mobile Hamburger Button (Hidden on Desktop)
+   Right Action Area (Socials + CTA + Toggle)
+   ====================================================== */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Desktop Social Icons */
+.social-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  transition: var(--nav-transition);
+}
+
+.social-btn:hover {
+  background: var(--nav-primary);
+  color: #ffffff;
+  border-color: var(--nav-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
+}
+
+/* Modern Gradient CTA Button */
+.cta-quote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--nav-primary-gradient);
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: -0.2px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(230, 0, 35, 0.28);
+  transition: var(--nav-transition);
+}
+
+.cta-quote-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(230, 0, 35, 0.42);
+  filter: brightness(1.05);
+}
+
+.cta-quote-btn .cta-arrow {
+  transition: transform 0.25s ease;
+}
+
+.cta-quote-btn:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ======================================================
+   Mobile Hamburger Toggle
    ====================================================== */
 .menu-toggle {
   display: none;
   flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 22px;
-  background: transparent;
-  border: none;
+  justify-content: space-around;
+  width: 38px;
+  height: 38px;
+  background: #f3f4f6;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
   cursor: pointer;
-  padding: 0;
-  z-index: 1001;
+  padding: 9px 8px;
+  z-index: 1002;
+  transition: var(--nav-transition);
+}
+
+.menu-toggle:hover {
+  background: #e5e7eb;
 }
 
 .menu-toggle .bar {
   width: 100%;
-  height: 3px;
-  background-color: #222222;
-  border-radius: 3px;
-  transition: all 0.3s ease-in-out;
+  height: 2.5px;
+  background-color: var(--nav-text);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
 }
 
-/* Hamburger to 'X' animation */
+/* Toggle active transformation to 'X' */
+.menu-toggle.active {
+  background: rgba(230, 57, 70, 0.1);
+  border-color: rgba(230, 57, 70, 0.2);
+}
+
 .menu-toggle.active .bar:nth-child(1) {
-  transform: translateY(9.5px) rotate(45deg);
-  background-color: #f00;
+  transform: translateY(6.5px) rotate(45deg);
+  background-color: var(--nav-primary);
 }
 
 .menu-toggle.active .bar:nth-child(2) {
   opacity: 0;
-  transform: translateX(-10px);
+  transform: scaleX(0);
 }
 
 .menu-toggle.active .bar:nth-child(3) {
-  transform: translateY(-9.5px) rotate(-45deg);
-  background-color: #f00;
+  transform: translateY(-6.5px) rotate(-45deg);
+  background-color: var(--nav-primary);
 }
 
-/* Mobile Backdrop Overlay */
+/* ======================================================
+   Mobile Navigation Drawer (≤ 991px)
+   ====================================================== */
+.mobile-nav-drawer {
+  display: none;
+}
+
 .mobile-backdrop {
   display: none;
 }
 
-/* ======================================================
-   Responsive Styles (Tablets & Mobile: ≤ 991px)
-   ====================================================== */
 @media (max-width: 991px) {
+  .desktop-nav,
+  .social-links-desktop {
+    display: none;
+  }
+
+  .cta-quote-btn:not(.mobile-cta) {
+    display: none;
+  }
+
   .menu-toggle {
     display: flex;
   }
 
-  .nav-menu {
+  /* Slide-down Drawer */
+  .mobile-nav-drawer {
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 20px 24px;
-    gap: 18px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+    border-radius: 0 0 20px 20px;
+    padding: 0 24px;
     max-height: 0;
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.35s ease,
+                padding 0.35s ease;
   }
 
-  .nav-menu.open {
-    max-height: 500px;
+  .mobile-nav-drawer.open {
+    max-height: 540px;
     opacity: 1;
     pointer-events: auto;
-    border-top: 1px solid #f0f0f0;
+    padding: 20px 24px 28px 24px;
   }
 
-  nav ul {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    gap: 4px;
-  }
-
-  nav ul li {
+  .mobile-nav-list {
+    list-style: none;
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  nav ul li a {
-    padding: 12px 16px;
-    font-size: 17px;
-    border-radius: 6px;
-    border-bottom: 1px solid #f8f9fa;
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    color: var(--nav-text);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 10px;
+    background: transparent;
+    transition: var(--nav-transition);
   }
 
-  .request-btn {
-    width: 100%;
-    text-align: center;
-    margin-top: 5px;
+  .mobile-nav-arrow {
+    font-size: 18px;
+    color: var(--nav-text-muted);
+    transition: transform 0.25s ease, color 0.25s ease;
   }
 
-  .request-btn a {
-    display: block;
-    width: 100%;
-    padding: 12px 0;
+  .mobile-nav-link:hover {
+    background: #f9fafb;
+    color: var(--nav-primary);
   }
 
-  .socialmedia-icons {
+  .mobile-nav-link:hover .mobile-nav-arrow {
+    transform: translateX(4px);
+    color: var(--nav-primary);
+  }
+
+  .mobile-nav-link.active {
+    background: rgba(230, 57, 70, 0.08);
+    color: var(--nav-primary);
+    font-weight: 600;
+  }
+
+  .mobile-nav-link.active .mobile-nav-arrow {
+    color: var(--nav-primary);
+  }
+
+  /* Mobile Drawer Footer */
+  .mobile-drawer-footer {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid #f1f3f5;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cta-quote-btn.mobile-cta {
     display: flex;
     justify-content: center;
-    padding-top: 8px;
+    width: 100%;
+    padding: 13px;
+    font-size: 15px;
   }
 
-  .socialmedia-icons ul {
+  .mobile-socials {
+    display: flex;
+    align-items: center;
     justify-content: center;
     gap: 12px;
   }
 
-  .socialmedia-icons ul li a {
-    width: 38px;
-    height: 38px;
-    font-size: 14px;
+  .mobile-socials .social-btn {
+    width: 42px;
+    height: 42px;
   }
 
-  /* Backdrop overlay when open */
+  /* Backdrop Overlay */
   .mobile-backdrop.open {
     display: block;
     position: fixed;
@@ -240,7 +403,9 @@ nav ul li a:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     z-index: 999;
   }
 }

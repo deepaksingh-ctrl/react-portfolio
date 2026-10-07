@@ -1,31 +1,206 @@
-.skills-main-sec{
-    margin: 10px 0;
-    background-color: #01183a;
-    padding: 40px 150px 60px 150px;
-    margin-top: 0px;
-    margin-bottom: 50px;
-}
-.progress-fill{
-    background: rgb(7, 168, 61);
+/* ======================================================
+   Modern Skills Section Styles
+   ====================================================== */
+
+.skills-main-sec {
+  background: #0f172a;
+  padding: 85px 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.skills-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:10px;
+/* Subtle Ambient Background Glow */
+.skills-main-sec::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(230, 57, 70, 0.12) 0%,
+    rgba(15, 23, 42, 0) 70%
+  );
+  pointer-events: none;
 }
 
-.skills-bar{
-    margin-bottom:30px;
+/* Section Header */
+.skills-badge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff4d6d;
+  background: rgba(255, 77, 109, 0.12);
+  border: 1px solid rgba(255, 77, 109, 0.25);
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 14px;
 }
 
-.progress{
-    height:10px;
-    border-radius:20px;
-    overflow:hidden;
+.skills-heading {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
 }
 
-.lightbox-content img{
-    width: 800px;
+.skills-subheading {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ======================================================
+   Skill Card & Progress Bars
+   ====================================================== */
+.skill-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 22px 24px;
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(230, 57, 70, 0.35);
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.35);
+}
+
+.skills-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.skill-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-icon {
+  font-size: 20px;
+}
+
+.skill-name {
+  color: #ffffff;
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.skill-category {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.skill-percent {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ff4d6d;
+}
+
+.skill-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.skill-progress-fill {
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #ff3366 0%, #e60023 100%);
+  box-shadow: 0 0 10px rgba(230, 0, 35, 0.6);
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ======================================================
+   Tools Showcase Pills
+   ====================================================== */
+.tools-showcase {
+  margin-top: 20px;
+  padding-top: 35px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tools-title {
+  color: #cbd5e1;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.tools-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tool-pill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 50px;
+  transition: all 0.25s ease;
+}
+
+.tool-pill:hover {
+  background: rgba(230, 57, 70, 0.18);
+  border-color: rgba(230, 57, 70, 0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ======================================================
+   Responsive Adjustments
+   ====================================================== */
+@media (max-width: 991px) {
+  .skills-heading {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-main-sec {
+    padding: 60px 0;
+  }
+
+  .skills-heading {
+    font-size: 1.95rem;
+  }
+
+  .skill-card {
+    padding: 18px 20px;
+  }
+
+  .tool-pill {
+    padding: 6px 14px;
+    font-size: 12.5px;
+  }
 }

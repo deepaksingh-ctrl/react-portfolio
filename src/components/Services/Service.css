@@ -1,17 +1,190 @@
+/* ======================================================
+   Modern Services Section Styles
+   ====================================================== */
 
-.services-sec{
-    margin-bottom: 80px;
+.services-sec {
+  background-color: #ffffff;
+  padding: 85px 0;
+  position: relative;
 }
-.services-sec h2{
-    margin-bottom: 40px;
-    font-size: 3rem;
+
+.services-heading {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
 }
-.service-box{
-    background: #e7e6e6;
-    padding: 20px;
-    border:1px solid #ccc;
-    text-align: center;
+
+.services-subheading {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
-.service-box h3{
-    margin:20px 0;
+
+/* ======================================================
+   Service Card
+   ====================================================== */
+.service-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px 28px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff3366, #e60023);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.1);
+  border-color: rgba(230, 57, 70, 0.2);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* Icon Box */
+.service-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  transition: all 0.3s ease;
+}
+
+.service-icon {
+  font-size: 26px;
+}
+
+.service-card:hover .service-icon-box {
+  background: rgba(230, 57, 70, 0.1);
+  border-color: rgba(230, 57, 70, 0.2);
+  transform: scale(1.08);
+}
+
+/* Content */
+.service-subtitle {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #e63946;
+  margin-bottom: 6px;
+}
+
+.service-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.service-description {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+/* Feature Checkpoints */
+.service-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.feature-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Bottom Action Link */
+.service-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #e63946;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.service-action-link:hover {
+  gap: 11px;
+  color: #b91c1c;
+}
+
+/* ======================================================
+   Responsive Adjustments
+   ====================================================== */
+@media (max-width: 991px) {
+  .services-heading {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-sec {
+    padding: 60px 0;
+  }
+
+  .services-heading {
+    font-size: 1.95rem;
+  }
+
+  .service-card {
+    padding: 26px 22px;
+  }
 }
