@@ -6,6 +6,7 @@ import Services from "../Services/Service";
 import ProjectCard from "../Projects/ProjectCard";
 import Experience from "../Experience/Experience";
 import Contact from "../Contact/Contact";
+import Products from "../Products/Products";
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <ProjectCard />
       <Experience />
       <Contact />
+      <Products />
     </>
   );
 }

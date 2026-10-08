@@ -1,11 +1,16 @@
 /* ======================================================
-   Modern Services Section Styles
+   Modern Services Slider Section Styles
    ====================================================== */
 
 .services-sec {
   background-color: #ffffff;
   padding: 85px 0;
   position: relative;
+}
+
+.services-header-wrapper {
+  position: relative;
+  margin-bottom: 25px;
 }
 
 .services-heading {
@@ -25,6 +30,60 @@
 }
 
 /* ======================================================
+   Slider Navigation Controls (Header)
+   ====================================================== */
+.services-slider-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.services-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.services-nav-btn:hover {
+  background: #e63946;
+  border-color: #e63946;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(230, 57, 70, 0.35);
+}
+
+.services-nav-btn.swiper-button-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ======================================================
+   Swiper Container & Slides
+   ====================================================== */
+.services-swiper {
+  width: 100%;
+  /* Padding top/bottom allows card hover shadows and pagination without clipping */
+  padding: 15px 6px 60px 6px !important;
+}
+
+.service-swiper-slide {
+  height: auto !important;
+  display: flex;
+}
+
+/* ======================================================
    Service Card
    ====================================================== */
 .service-card {
@@ -34,6 +93,7 @@
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -88,6 +148,12 @@
 }
 
 /* Content */
+.service-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .service-subtitle {
   display: block;
   font-size: 12px;
@@ -111,6 +177,7 @@
   color: #64748b;
   line-height: 1.6;
   margin-bottom: 22px;
+  flex: 1;
 }
 
 /* Feature Checkpoints */
@@ -167,6 +234,28 @@
 }
 
 /* ======================================================
+   Swiper Custom Pagination Styles
+   ====================================================== */
+.services-swiper .swiper-pagination {
+  bottom: 15px !important;
+}
+
+.services-swiper .swiper-pagination-bullet {
+  width: 9px;
+  height: 9px;
+  background: #cbd5e1;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.services-swiper .swiper-pagination-bullet-active {
+  width: 26px;
+  border-radius: 6px;
+  background: #e63946;
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+}
+
+/* ======================================================
    Responsive Adjustments
    ====================================================== */
 @media (max-width: 991px) {
@@ -186,5 +275,14 @@
 
   .service-card {
     padding: 26px 22px;
+  }
+
+  .services-slider-controls {
+    margin-top: 15px;
+  }
+
+  .services-nav-btn {
+    width: 38px;
+    height: 38px;
   }
 }
