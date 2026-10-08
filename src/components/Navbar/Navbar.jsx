@@ -6,6 +6,8 @@ import './Navbar.css';
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDesktopSkillsOpen, setIsDesktopSkillsOpen] = useState(false);
+  const [isMobileSkillsOpen, setIsMobileSkillsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,14 +23,35 @@ function Navbar() {
 
   const closeMenu = () => {
     setIsMobileMenuOpen(false);
+    setIsDesktopSkillsOpen(false);
+    setIsMobileSkillsOpen(false);
   };
 
-  const navigation = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Skills", path: "/skills" },
-    { name: "Projects", path: "/projects" },
-    { name: "Contact", path: "/contact" },
+  const skillDropdownItems = [
+    {
+      name: "React.js & Frontend",
+      desc: "Single Page Apps, Hooks & State",
+      icon: "⚛️",
+      path: "/skills"
+    },
+    {
+      name: "WordPress & PHP",
+      desc: "Custom Themes, ACF & Gutenberg",
+      icon: "🌐",
+      path: "/skills"
+    },
+    {
+      name: "UI / UX & Styling",
+      desc: "Bootstrap 5, Tailwind & Responsive",
+      icon: "🎨",
+      path: "/skills"
+    },
+    {
+      name: "REST APIs & Tools",
+      desc: "API Integration, Git & Vite",
+      icon: "⚡",
+      path: "/skills"
+    }
   ];
 
   const socialLinks = [
@@ -85,18 +108,129 @@ function Navbar() {
             {/* Desktop Navigation */}
             <nav className="desktop-nav">
               <ul className="nav-list">
-                {navigation.map((item) => (
-                  <li key={item.name} className="nav-item">
-                    <NavLink
-                      to={item.path}
-                      className={({ isActive }) =>
-                        `nav-link-item ${isActive ? "active" : ""}`
-                      }
+                <li className="nav-item">
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `nav-link-item ${isActive ? "active" : ""}`
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      `nav-link-item ${isActive ? "active" : ""}`
+                    }
+                  >
+                    About
+                  </NavLink>
+                </li>
+
+                {/* Skills with Dropdown */}
+                <li
+                  className="nav-item has-dropdown"
+                  onMouseEnter={() => setIsDesktopSkillsOpen(true)}
+                  onMouseLeave={() => setIsDesktopSkillsOpen(false)}
+                >
+                  <NavLink
+                    to="/skills"
+                    className={({ isActive }) =>
+                      `nav-link-item dropdown-toggle-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    <span>Skills</span>
+                    <svg
+                      className={`dropdown-chevron-icon ${
+                        isDesktopSkillsOpen ? "open" : ""
+                      }`}
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
-                      {item.name}
-                    </NavLink>
-                  </li>
-                ))}
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </NavLink>
+
+                  {/* Desktop Dropdown Menu */}
+                  <div
+                    className={`nav-dropdown-menu ${
+                      isDesktopSkillsOpen ? "show" : ""
+                    }`}
+                  >
+                    <div className="dropdown-header">
+                      <span className="dropdown-title">Core Competencies</span>
+                    </div>
+
+                    <div className="dropdown-items-grid">
+                      {skillDropdownItems.map((item) => (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          className="dropdown-item-card"
+                          onClick={() => {
+                            setIsDesktopSkillsOpen(false);
+                            closeMenu();
+                          }}
+                        >
+                          <span className="dropdown-item-icon">{item.icon}</span>
+                          <div className="dropdown-item-info">
+                            <span className="dropdown-item-title">
+                              {item.name}
+                            </span>
+                            <span className="dropdown-item-desc">
+                              {item.desc}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    <div className="dropdown-footer">
+                      <Link
+                        to="/skills"
+                        className="dropdown-footer-link"
+                        onClick={() => {
+                          setIsDesktopSkillsOpen(false);
+                          closeMenu();
+                        }}
+                      >
+                        <span>View All Skills & Proficiencies</span>
+                        <span className="dropdown-footer-arrow">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    to="/projects"
+                    className={({ isActive }) =>
+                      `nav-link-item ${isActive ? "active" : ""}`
+                    }
+                  >
+                    Projects
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                      `nav-link-item ${isActive ? "active" : ""}`
+                    }
+                  >
+                    Contact
+                  </NavLink>
+                </li>
               </ul>
             </nav>
 
@@ -157,20 +291,114 @@ function Navbar() {
         {/* Mobile Navigation Drawer */}
         <div className={`mobile-nav-drawer ${isMobileMenuOpen ? "open" : ""}`}>
           <ul className="mobile-nav-list">
-            {navigation.map((item) => (
-              <li key={item.name} className="mobile-nav-item">
+            <li className="mobile-nav-item">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `mobile-nav-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMenu}
+              >
+                <span>Home</span>
+                <span className="mobile-nav-arrow">›</span>
+              </NavLink>
+            </li>
+
+            <li className="mobile-nav-item">
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `mobile-nav-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMenu}
+              >
+                <span>About</span>
+                <span className="mobile-nav-arrow">›</span>
+              </NavLink>
+            </li>
+
+            {/* Mobile Skills Dropdown / Accordion */}
+            <li className="mobile-nav-item mobile-dropdown-item">
+              <div className="mobile-dropdown-header">
                 <NavLink
-                  to={item.path}
+                  to="/skills"
                   className={({ isActive }) =>
                     `mobile-nav-link ${isActive ? "active" : ""}`
                   }
                   onClick={closeMenu}
                 >
-                  <span>{item.name}</span>
-                  <span className="mobile-nav-arrow">›</span>
+                  <span>Skills</span>
                 </NavLink>
-              </li>
-            ))}
+                <button
+                  className={`mobile-accordion-btn ${
+                    isMobileSkillsOpen ? "open" : ""
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsMobileSkillsOpen((prev) => !prev);
+                  }}
+                  aria-label="Toggle skills sub-menu"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Mobile Submenu Accordion */}
+              <div
+                className={`mobile-submenu-collapse ${
+                  isMobileSkillsOpen ? "open" : ""
+                }`}
+              >
+                {skillDropdownItems.map((sub) => (
+                  <Link
+                    key={sub.name}
+                    to={sub.path}
+                    className="mobile-sub-link"
+                    onClick={closeMenu}
+                  >
+                    <span className="mobile-sub-icon">{sub.icon}</span>
+                    <span className="mobile-sub-name">{sub.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </li>
+
+            <li className="mobile-nav-item">
+              <NavLink
+                to="/projects"
+                className={({ isActive }) =>
+                  `mobile-nav-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMenu}
+              >
+                <span>Projects</span>
+                <span className="mobile-nav-arrow">›</span>
+              </NavLink>
+            </li>
+
+            <li className="mobile-nav-item">
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `mobile-nav-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMenu}
+              >
+                <span>Contact</span>
+                <span className="mobile-nav-arrow">›</span>
+              </NavLink>
+            </li>
           </ul>
 
           <div className="mobile-drawer-footer">
