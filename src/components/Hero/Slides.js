@@ -11,7 +11,7 @@ const slides = [
     description: "I specialize in architecting fast, accessible, and responsive user interfaces that transform complex ideas into modern digital realities.",
     background: slideImage1,
     primaryBtn: { text: "View My Work", link: "/projects" },
-    secondaryBtn: { text: "Let's Talk", link: "/contact" }
+    secondaryBtn: { text: "Contact Us", link: "/contact" }
   },
   {
     id: 2,
