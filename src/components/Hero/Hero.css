@@ -40,8 +40,10 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 720px;
+  max-width: 980px;
   padding: 40px 0;
+  margin:0 auto;
+  text-align: center;
   animation: heroContentFade 0.8s ease-out;
 }
 
@@ -109,7 +111,7 @@
   font-size: 1.1rem;
   line-height: 1.65;
   margin-bottom: 32px;
-  max-width: 600px;
+  max-width: 100%;
 }
 
 /* CTA Buttons */
@@ -118,6 +120,7 @@
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hero-btn {
